@@ -19,4 +19,3 @@ object Main {
     System.exit(0)
   }
 }
-
