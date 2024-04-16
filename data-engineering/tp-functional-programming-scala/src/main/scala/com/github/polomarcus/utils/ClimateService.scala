@@ -30,16 +30,12 @@ object ClimateService {
    * otherwise : None
    * you can access to Tuple with myTuple._1, myTuple._2, myTuple._3
    */
-  /*def parseRawData(list: List[(Int, Int, Double)]) : List[Option[CO2Record]] = {
-      list.map { record => ??? }
-      ???
-  }*/
   def parseRawData(list: List[(Int, Int, Double)]): List[Option[CO2Record]] = {
-    list.map { case (date, location, ppm) =>
-        if (ppm.isValidPpmValue)
-          Some(data)
-        else
-          None
+    list.map { record =>
+      if (CO2Record(record._1, record._2, record._3).isValidPpmValue)
+        Some(CO2Record(record._1, record._2, record._3))
+      else
+        None
     }
   }
 
