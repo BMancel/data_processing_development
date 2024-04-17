@@ -51,7 +51,11 @@ object ClimateService {
   /**
    * **Tips**: look at the read me to find some tips for this function
    */
-  def getMinMax(list: List[CO2Record]) : (Double, Double) = ???
+  def getMinMax(list: List[CO2Record]) : (Double, Double) = {
+    val minimum = list.map(_.ppm).min
+    val maximum = list.map(_.ppm).max
+    (minimum, maximum)
+  }
 
   def getMinMaxByYear(list: List[CO2Record], year: Int) : (Double, Double) = ???
 
