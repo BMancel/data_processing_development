@@ -32,15 +32,21 @@ class ClimateServiceTest extends AnyFunSuite {
 
   //@TODO
   test("filterDecemberData") {
-    assert(true == false)
+    val firstRecord = CO2Record(2003, 1, 355.2)
+    val secondRecord = CO2Record(2004, 12, 375.2)
+    val thirdRecord = CO2Record(2003, 1, 380.2)
+
+    val list1 = List(Some(firstRecord), Some(secondRecord), Some(thirdRecord))
+    val output = List(firstRecord, thirdRecord)
+    assert(ClimateService.filterDecemberData(list1) == output)
   }
 
   test("getMinMax") {
     val firstRecord = CO2Record(2003, 1, 355.2)
     val secondRecord = CO2Record(2004, 1, 375.2)
-    val thirdReccord = CO2Record(2003, 1, 380.2)
+    val thirdRecord = CO2Record(2003, 1, 380.2)
 
-    val list1 = List(firstRecord, secondRecord, thirdReccord)
+    val list1 = List(firstRecord, secondRecord, thirdRecord)
     val output = (355.2, 380.2)
     assert(ClimateService.getMinMax(list1)== output)
   }
@@ -48,12 +54,12 @@ class ClimateServiceTest extends AnyFunSuite {
   test("getMinMaxByYear") {
     val record1 = CO2Record(2003, 1, 355.2)
     val record2 = CO2Record(2003, 1, 375.2)
-    val reccord3 = CO2Record(2003, 1, 380.2)
+    val record3 = CO2Record(2003, 1, 380.2)
     val record4 = CO2Record(2004, 1, 455.2)
     val record5 = CO2Record(2004, 1, 475.2)
-    val reccord6 = CO2Record(2004, 1, 480.2)
+    val record6 = CO2Record(2004, 1, 480.2)
 
-    val list1 = List(record1, record2, reccord3 ,record4, record5, reccord6)
+    val list1 = List(record1, record2, record3 ,record4, record5, record6)
     val output = (455.2, 480.2)
     assert(ClimateService.getMinMaxByYear(list1, 2004)== output)
   }
