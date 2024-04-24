@@ -56,7 +56,9 @@ object Main {
 
     // Use strongly typed dataset to be sure to not introduce a typo to your SQL Query
     // Tips : https://stackoverflow.com/a/46514327/3535853
-
+    val my_query_typed = newsDatasets.filter(_.containsWordGlobalWarming).map(news => (news.title, news.url))
+    val my_query_typed_columns = my_query_typed.withColumnRenamed("_1", "title").withColumnRenamed("_2", "url")
+    my_query_typed_columns.show(10)
 
     // Save it as a columnar format with Parquet with a partition by date and media
     // Learn about Parquet : https://spark.apache.org/docs/3.2.1/sql-data-sources-parquet.html
