@@ -63,6 +63,8 @@ object Main {
     // Save it as a columnar format with Parquet with a partition by date and media
     // Learn about Parquet : https://spark.apache.org/docs/3.2.1/sql-data-sources-parquet.html
     // Learn about partition : https://spark.apache.org/docs/3.2.1/sql-data-sources-load-save-functions.html#bucketing-sorting-and-partitioning
+    newsDatasets.write.partitionBy("date", "media").format("parquet").save("newsDatasets.parquet")
+
 
     logger.info("Stopping the app")
     System.exit(0)
