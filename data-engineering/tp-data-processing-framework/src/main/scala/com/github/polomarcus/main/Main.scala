@@ -50,7 +50,9 @@ object Main {
 
 
     // Use SQL to query a "news" table - look at : https://spark.apache.org/docs/latest/sql-getting-started.html#running-sql-queries-programmatically
-
+    newsDatasets.createOrReplaceTempView("news")
+    val my_query = spark.sql("SELECT title, url FROM news WHERE containsWordGlobalWarming = true")
+    my_query.show(10)
 
     // Use strongly typed dataset to be sure to not introduce a typo to your SQL Query
     // Tips : https://stackoverflow.com/a/46514327/3535853
